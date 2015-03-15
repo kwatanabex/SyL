@@ -26,7 +26,7 @@
  * @package    SyL.Lib
  * @subpackage SyL.Lib.File
  * @author     Koki Watanabe <k.watanabe@syl.jp>
- * @copyright 2006-2012 k.watanabe
+ * @copyright 2006-2015 k.watanabe
  * @license    http://www.opensource.org/licenses/lgpl-license.php
  * @version    CVS: $Id$
  * @link       http://syl.jp/
@@ -42,7 +42,7 @@ require_once 'SyL_FileWriter.php';
  * @package    SyL.Lib
  * @subpackage SyL.Lib.File
  * @author     Koki Watanabe <k.watanabe@syl.jp>
- * @copyright 2006-2012 k.watanabe
+ * @copyright 2006-2015 k.watanabe
  * @license    http://www.opensource.org/licenses/lgpl-license.php
  * @version    CVS: $Id$
  * @link       http://syl.jp/

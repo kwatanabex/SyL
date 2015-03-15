@@ -25,7 +25,7 @@
  * -----------------------------------------------------------------------------
  * @package    SyL.Core
  * @author     Koki Watanabe <k.watanabe@syl.jp>
- * @copyright 2006-2012 k.watanabe
+ * @copyright 2006-2015 k.watanabe
  * @license    http://www.opensource.org/licenses/lgpl-license.php
  * @version    CVS: $Id:$
  * @link       http://syl.jp/
@@ -49,7 +49,7 @@ require_once SYL_FRAMEWORK_DIR . '/Lib/Cache/SyL_CacheEntityMemcache.php';
  *
  * @package    SyL.Core
  * @author     Koki Watanabe <k.watanabe@syl.jp>
- * @copyright 2006-2012 k.watanabe
+ * @copyright 2006-2015 k.watanabe
  * @license    http://www.opensource.org/licenses/lgpl-license.php
  * @version    CVS: $Id:$
  * @link       http://syl.jp/
