@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<syl-actions xmlns="http://syl.jp/schema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://syl.jp/schema syl-actions.xsd">
+
+<action path="(.+)\.php"
+        method="execute{$action}">
+</action>
+
+</syl-actions>

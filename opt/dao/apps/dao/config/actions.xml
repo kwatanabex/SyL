@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<syl-actions xmlns="http://syl.jp/schema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://syl.jp/schema syl-actions.xsd">
+
+<!--
+  プロジェクト作成コマンド
+-->
+<action path="(.+)\.php"
+        method="execute{$action}">
+<!--
+  <setter name="c_project" direct="true">
+    <arg type="component" reference="true">c_project</arg>
+  </setter>
+  <setter name="c_application" direct="true">
+    <arg type="component" reference="true">c_application</arg>
+  </setter>
+  <setter name="c_controller" direct="true">
+    <arg type="component" reference="true">c_controller</arg>
+  </setter>
+  <setter name="c_action" direct="true">
+    <arg type="component" reference="true">c_action</arg>
+  </setter>
+  <setter name="c_template" direct="true">
+    <arg type="component" reference="true">c_template</arg>
+  </setter>
+
+  <components>
+    <component name="c_project"
+               class="CreateProject"
+               file="CreateProject.php"
+               priority="1"></component>
+    <component name="c_application"
+               class="CreateApplication"
+               file="CreateApplication.php"
+               priority="2"></component>
+    <component name="c_controller"
+               class="CreateController"
+               file="CreateController.php"
+               priority="3"></component>
+    <component name="c_action"
+               class="CreateAction"
+               file="CreateAction.php"
+               priority="4"></component>
+    <component name="c_template"
+               class="CreateTemplate"
+               file="CreateTemplate.php"
+               priority="5"></component>
+  </components>
+  -->
+</action>
+
+</syl-actions>

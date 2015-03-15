@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  プロジェクト定数設定ファイル（defines.xml）
+
+  defines.xml は、プロジェクト内で使用する定数を設定します。
+
+  例）
+  - defines.xml
+    <define name="EXAMPLE">test</define>
+  - プログラム側
+    echo EXAMPLE; // test
+
+  ※ 設定値などは下記URLを参照
+  http://syl.jp/document/configuration/defines.html
+-->
+<syl-defines xmlns="http://syl.jp/schema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://syl.jp/schema syl-defines.xsd">
+</syl-defines>
