@@ -24,7 +24,7 @@
  *
  * -----------------------------------------------------------------------------
  * @package    SyL.Lib
- * @subpackage SyL.Lib.Atom
+ * @subpackage SyL.Lib.Rss
  * @author     Koki Watanabe <k.watanabe@syl.jp>
  * @copyright 2006-2015 k.watanabe
  * @license    http://www.opensource.org/licenses/lgpl-license.php
@@ -33,27 +33,73 @@
  * -----------------------------------------------------------------------------
  */
 
-/** AtomPub Personコンストラクト要素クラス */
-require_once 'SyL_AtomElementPersonAbstract.php';
+/** HTTPレスポンスクラス */
+require_once dirname(__FILE__) . '/../Http/SyL_HttpClientResponse.php';
+/** Atom要素オブジェクト変換クラス */
+require_once 'SyL_AtomConverter.php';
 
 /**
- * AtomPub 貢献人要素クラス
+ * Atomリクエストレスポンスクラス
  *
  * @package    SyL.Lib
- * @subpackage SyL.Lib.Atom
+ * @subpackage SyL.Lib.Rss
  * @author     Koki Watanabe <k.watanabe@syl.jp>
  * @copyright 2006-2015 k.watanabe
  * @license    http://www.opensource.org/licenses/lgpl-license.php
  * @version    CVS: $Id:$
  * @link       http://syl.jp/
  */
-class SyL_AtomElementContributor extends SyL_AtomElementPersonAbstract
+class SyL_AtomClientResponse extends SyL_HttpClientResponse
 {
     /**
-     * 要素名
+     * RSS要素オブジェクト
      *
-     * @var string
+     * @var SyL_RssElementRss
      */
-    protected $element_name = 'contributor';
+    private $atom = null;
 
+    /**
+     * コンストラクタ
+     * 
+     * @param string レスポンス本文
+     * @param bool ローカルリソースフラグ
+     */
+    public function __construct($data, $local_resource=false)
+    {
+        if (!$local_resource) {
+            parent::__construct($data); // ここではエンコーディング変換無し
+            $data = $this->getBody();
+        }
+        $this->atom = SyL_AtomConverter::toObject($data, $rss_version, SyL_HttpClient::getClientEncoding());
+    }
+
+    /**
+     * RSS要素オブジェクトを取得する
+     *
+     * @return SyL_RssElementRss RSS要素オブジェクト
+     */
+    public function getRss()
+    {
+        return $this->rss;
+    }
+
+    /**
+     * チャンネルオブジェクトを取得する
+     *
+     * @return SyL_RssElementChannel チャンネルオブジェクト
+     */
+    public function getChannel()
+    {
+        return $this->rss->getChannel();
+    }
+
+    /**
+     * アイテム要素を取得する
+     *
+     * @return array アイテム要素
+     */
+    public function getItems()
+    {
+        return $this->rss->getChannel()->getItems();
+    }
 }

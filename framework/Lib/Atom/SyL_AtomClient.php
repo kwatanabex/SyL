@@ -24,7 +24,7 @@
  *
  * -----------------------------------------------------------------------------
  * @package    SyL.Lib
- * @subpackage SyL.Lib.Atom
+ * @subpackage SyL.Lib.Rss
  * @author     Koki Watanabe <k.watanabe@syl.jp>
  * @copyright 2006-2015 k.watanabe
  * @license    http://www.opensource.org/licenses/lgpl-license.php
@@ -33,27 +33,55 @@
  * -----------------------------------------------------------------------------
  */
 
-/** AtomPub Personコンストラクト要素クラス */
-require_once 'SyL_AtomElementPersonAbstract.php';
+/** HTTPクライアントクラス */
+require_once dirname(__FILE__) . '/../Http/SyL_HttpClient.php';
+/** ファイル操作クラス */
+require_once dirname(__FILE__) . '/../File/SyL_FileAbstract.php';
+/** Atomクライアントレスポンスクラス */
+require_once 'SyL_AtomClientResponse.php';
 
 /**
- * AtomPub 貢献人要素クラス
+ * ATOMクライアントクラス
  *
  * @package    SyL.Lib
- * @subpackage SyL.Lib.Atom
+ * @subpackage SyL.Lib.Rss
  * @author     Koki Watanabe <k.watanabe@syl.jp>
  * @copyright 2006-2015 k.watanabe
  * @license    http://www.opensource.org/licenses/lgpl-license.php
  * @version    CVS: $Id:$
  * @link       http://syl.jp/
  */
-class SyL_AtomElementContributor extends SyL_AtomElementPersonAbstract
+class SyL_AtomClient extends SyL_HttpClient
 {
     /**
-     * 要素名
+     * RSSバージョン
+     *
+     * nullの場合は自動判定
      *
      * @var string
      */
-    protected $element_name = 'contributor';
+    private $rss_version = '2.0';
 
+    /**
+     * リソースからレスポンスオブジェクトを取得する
+     * 
+     * @param string リソース名
+     * @return SyL_RssClientResponse レスポンスオブジェクト
+     */
+    public function getResponseFromResource($resource_name)
+    {
+        return $this->createResponse(SyL_FileAbstract::readContents($resource_name), true);
+    }
+
+    /**
+     * レスポンスオブジェクトを作成する
+     * 
+     * @param string HTTPレスポンス
+     * @param bool ローカルリソースフラグ
+     * @return SyL_RssClientResponse レスポンスオブジェクト
+     */
+    protected function createResponse($data, $local_resource=false)
+    {
+        return new SyL_AtomClientResponse($data, $local_resource);
+    }
 }

@@ -98,7 +98,6 @@ class SyL_AtomConverter
      * @param string エンコーディング
      * @return SyL_RssElementRss RSS要素オブジェクト
      */
-/*
     public static function toObject($data, $rss_version='2.0', $encoding=null)
     {
         $parser = SyL_RssParserAbstract::createInstance($data, $rss_version);
@@ -108,5 +107,4 @@ class SyL_AtomConverter
         $parser->parse();
         return $parser->getRss();
     }
-*/
 }
