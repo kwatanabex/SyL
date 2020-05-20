@@ -39,7 +39,7 @@ if (!extension_loaded('mbstring')) {
 ob_start();
 
 /** バージョン定義 */
-define('SYL_VERSION', '2.0.0-svn');
+define('SYL_VERSION', '2.1.0');
 
 /** ベースディレクトリの定義 */
 define('SYL_DIR', dirname(__FILE__) . '/..');

@@ -105,23 +105,27 @@ class SyL_Container
             foreach ($operations as &$operation) {
                 switch ($operation->type) {
                 case 'constructor':
+                    $load = false;
                     try {
                         self::LoadLib($component->file);
                         if (!class_exists($classname)) {
                             throw new SyL_ClassNotFoundException("class not found ({$classname})");
                         }
+                        $load = true;
                     } catch (SyL_FileNotFoundException $e) {
                         SyL_Logger::info("library load failed ({$component->file})");
                         if ($component->force) {
                             throw $e;
                         }
-                        continue;
                     } catch (SyL_ClassNotFoundException $e) {
                         SyL_Logger::warn("class not found ({$component->file}, {$classname})");
                         if ($component->force) {
                             throw $e;
                         }
-                        continue;
+                    }
+
+                    if (!$load) {
+                        break;
                     }
 
                     $obj = null;

@@ -101,9 +101,9 @@ abstract class SyL_RequestAbstract implements SyL_ContainerComponentInterface
 
         $property = new SyL_Property();
         $property->sets($parameters);
-        if (get_magic_quotes_gpc()) {
-            $property->apply('stripslashes');
-        }
+        //if (get_magic_quotes_gpc()) {
+        //    $property->apply('stripslashes');
+        //}
         SyL_Logger::trace("request parameters: " . print_r($property->gets(), true));
         return $property;
     }

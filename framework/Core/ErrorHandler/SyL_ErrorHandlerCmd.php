@@ -49,9 +49,9 @@ class SyL_ErrorHandlerCmd extends SyL_ErrorHandlerAbstract
     /**
      * 権限が無い場合の処理
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローされたオブジェクト
      */
-    protected function handleForbiddenError(Exception $e)
+    protected function handleForbiddenError(Throwable $e)
     {
         $this->display($e);
     }
@@ -59,9 +59,9 @@ class SyL_ErrorHandlerCmd extends SyL_ErrorHandlerAbstract
     /**
      * リソースがない場合の処理
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローされたオブジェクト
      */
-    protected function handleNotFoundError(Exception $e)
+    protected function handleNotFoundError(Throwable $e)
     {
         $this->display($e);
     }
@@ -69,9 +69,9 @@ class SyL_ErrorHandlerCmd extends SyL_ErrorHandlerAbstract
     /**
      * 通常エラー処理
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローされたオブジェクト
      */
-    protected function handleError(Exception $e)
+    protected function handleError(Throwable $e)
     {
         $this->display($e);
     }
@@ -79,9 +79,9 @@ class SyL_ErrorHandlerCmd extends SyL_ErrorHandlerAbstract
     /**
      * エラーメッセージを出力する
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローされたオブジェクト
      */
-    protected function display(Exception $e)
+    protected function display(Throwable $e)
     {
         echo self::getErrorMessage($e) . PHP_EOL;
         echo $this->convertTrace(self::getTrace($e));

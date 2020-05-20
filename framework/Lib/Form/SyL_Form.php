@@ -299,13 +299,13 @@ class SyL_Form
             return call_user_func(self::$auto_input_parameter_callback, $name);
         } else {
             $parameter = isset($_POST[$name]) ? $_POST[$name] : null;
-            if (get_magic_quotes_gpc()) {
-                if (is_array($parameter)) {
-                    $parameter = array_map('stripslashes', $parameter);
-                } else {
-                    $parameter = stripslashes($parameter);
-                }
-            }
+            //if (get_magic_quotes_gpc()) {
+            //    if (is_array($parameter)) {
+            //        $parameter = array_map('stripslashes', $parameter);
+            //    } else {
+            //        $parameter = stripslashes($parameter);
+            //    }
+            //}
             return $parameter;
         }
     }

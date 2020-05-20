@@ -60,7 +60,7 @@ abstract class SyL_ViewLayoutSmartyAbstract extends SyL_ViewLayoutAbstract
      * 
      * @var bool
      */
-    private $version_higher_3 = false;
+    private $version_higher_3 = true;
 
     /**
      * コンストラクタ
@@ -73,11 +73,11 @@ abstract class SyL_ViewLayoutSmartyAbstract extends SyL_ViewLayoutAbstract
         parent::__construct($context, $data);
 
         $this->smarty = $this->createSmarty();
-        if (preg_match('/(\d+\.\d+\.\d+)/', $this->smarty->_version, $matches)) {
-            $this->version_higher_3 = version_compare($matches[1], '3.0.0', '>=');
-        } else {
-            throw new SyL_InvalidParameterException('invalid Smarty class');
-        }
+        //if (preg_match('/(\d+\.\d+\.\d+)/', $this->smarty->_version, $matches)) {
+        //    $this->version_higher_3 = version_compare($matches[1], '3.0.0', '>=');
+        //} else {
+        //    throw new SyL_InvalidParameterException('invalid Smarty class');
+        //}
 
         $this->smarty->template_dir = $this->getTemplateDir() . DIRECTORY_SEPARATOR;
         $this->smarty->compile_dir = SYL_PROJECT_DIR . '/var/templates/' . SYL_APP_NAME . '/';

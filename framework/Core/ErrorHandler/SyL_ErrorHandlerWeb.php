@@ -49,9 +49,9 @@ class SyL_ErrorHandlerWeb extends SyL_ErrorHandlerAbstract
     /**
      * 権限が無い場合の処理
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローオブジェクト
      */
-    protected function handleForbiddenError(Exception $e)
+    protected function handleForbiddenError(Throwable $e)
     {
         header('HTTP/1.0 403 Forbidden');
         header('Content-type: text/html; charset=' . SYL_ENCODE_INTERNAL);
@@ -61,9 +61,9 @@ class SyL_ErrorHandlerWeb extends SyL_ErrorHandlerAbstract
     /**
      * リソースがない場合の処理
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローオブジェクト
      */
-    protected function handleNotFoundError(Exception $e)
+    protected function handleNotFoundError(Throwable $e)
     {
         header('HTTP/1.0 404 Not Found');
         header('Content-type: text/html; charset=' . SYL_ENCODE_INTERNAL);
@@ -73,9 +73,9 @@ class SyL_ErrorHandlerWeb extends SyL_ErrorHandlerAbstract
     /**
      * 通常エラー処理
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローオブジェクト
      */
-    protected function handleError(Exception $e)
+    protected function handleError(Throwable $e)
     {
         $error_message = self::getErrorMessage($e);
 

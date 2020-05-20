@@ -156,7 +156,7 @@ abstract class SyL_ErrorHandlerAbstract
      *
      * @param Exception スローされた例外オブジェクト
      */
-    public final function triggerException(Exception $e)
+    public final function triggerException(Throwable $e)
     {
         restore_error_handler();
         restore_exception_handler();
@@ -164,7 +164,7 @@ abstract class SyL_ErrorHandlerAbstract
         // エラーイベント実行
         try {
             self::$dispatcher->errorStream();
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             $error_message  = get_class($e) . " thrown within the exception handler. Message: " . $e->getMessage() . " on line " . $e->getLine();
             echo $error_message;
             SyL_Logger::error($error_message);
@@ -198,7 +198,7 @@ abstract class SyL_ErrorHandlerAbstract
                 $this->writeLog($e, $code);
                 $this->handleError($e);
             }
-        } catch (Exception $e2) {
+        } catch (Throwable $e2) {
             echo 'uncatchable error in ' . get_class($this) . ': ' . $e2->getMessage();
             SyL_Logger::error('uncatchable error in ' . get_class($this) . ': ' . $e2->getMessage());
         }
@@ -207,31 +207,31 @@ abstract class SyL_ErrorHandlerAbstract
     /**
      * 権限が無い場合の処理
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローされたオブジェクト
      */
-    protected abstract function handleForbiddenError(Exception $e);
+    protected abstract function handleForbiddenError(Throwable $e);
 
     /**
      * リソースがない場合の処理
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローされたオブジェクト
      */
-    protected abstract function handleNotFoundError(Exception $e);
+    protected abstract function handleNotFoundError(Throwable $e);
 
     /**
      * 通常エラー処理
      * 
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローされたオブジェクト
      */
-    protected abstract function handleError(Exception $e);
+    protected abstract function handleError(Throwable $e);
 
     /**
      * エラーメッセージ
      *
-     * @param Exception スローされた例外オブジェクト
+     * @param Throwable スローされたオブジェクト
      * @return string エラーメッセージ
      */
-    protected static function getErrorMessage(Exception $e)
+    protected static function getErrorMessage(Throwable $e)
     {
         $code = $e->getCode();
         if ($code == 0) {
@@ -296,10 +296,10 @@ abstract class SyL_ErrorHandlerAbstract
     /**
      * トレース情報を整形
      *
-     * @param array Exceptionから取得したトレース情報
+     * @param Throwable スローオブジェクト
      * @return array 整形後トレース情報
      */
-    protected static function getTrace(Exception $e)
+    protected static function getTrace(Throwable $e)
     {
         $error_trace = array();
         $no = 1;
@@ -358,10 +358,10 @@ abstract class SyL_ErrorHandlerAbstract
     /**
      * エラートレースを取得する
      *
-     * @param Exception 例外
+     * @param Throwable スローオブジェクト
      * @return string エラートレース
      */
-    private static function getTraceMessage(Exception $e)
+    private static function getTraceMessage(Throwable $e)
     {
         $error_message = '';
         foreach (self::getTrace($e) as $values) {
@@ -375,10 +375,10 @@ abstract class SyL_ErrorHandlerAbstract
     /**
      * 例外メッセージを取得する
      *
-     * @param Exception 例外
+     * @param Throwable スローオブジェクト
      * @return string エラートレース
      */
-    public static function getExceptionMessage(Exception $e)
+    public static function getExceptionMessage(Throwable $e)
     {
         $error_message  = self::getErrorMessage($e);
         $error_message .= PHP_EOL;
@@ -389,10 +389,10 @@ abstract class SyL_ErrorHandlerAbstract
     /**
      * ログを保存
      *
-     * @param Exception 例外
+     * @param Throwable スローオブジェクト
      * @param int エラーコード
      */
-    private function writeLog(Exception $e, $code)
+    private function writeLog(Throwable $e, $code)
     {
         $error_message = self::getExceptionMessage($e);
         $error_message .= PHP_EOL;
@@ -432,10 +432,10 @@ abstract class SyL_ErrorHandlerAbstract
     /**
      * エラーメールを送信
      *
-     * @param Exception 例外
+     * @param Throwable スローオブジェクト
      * @param string メール送信アドレス
      */
-    protected function sendErrorMail(Exception $e, $address)
+    protected function sendErrorMail(Throwable $e, $address)
     {
         // 日付取得
         $date = date('Y-m-d H:i:s');
@@ -490,7 +490,7 @@ EOF;
             if (method_exists($mail, 'getCommandLog')) {
                 SyL_Logger::debug($mail->getCommandLog());
             }
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             echo 'uncatchable error in ' . get_class($this) . ': ' . $e->getMessage();
             SyL_Logger::error('uncatchable error in ' . get_class($this) . ': ' . $e->getMessage());
         }
